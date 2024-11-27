@@ -89,12 +89,49 @@
         \end{questions}
     \end{task}
 
+    \begin{task}
+        You can also use your self-defined functions to generate data and store it in a file.
+        Let's create a function called \texttt{summation} that adds two numbers and echos the result:
+        \begin{lstlisting}
+            summation() {
+                echo $(( $1 + $2 ))
+            }
+        \end{lstlisting}
+        Now let's call the function with two arguments and redirect the output to a new file:
+        \begin{lstlisting}
+            summation 1 2 > result.txt
+        \end{lstlisting}
+        \begin{questions}
+            \item Inspect the content of the new file by running \texttt{cat result.txt}. Does it contain what you expected?
+            \item Now call the function and replace one argument with the content of the result file like this: \texttt{summation \$(cat result.txt) 2}. What is the output and did you expect that?
+            \item Run it again and redirect the output back to the result file: \texttt{summation \$(cat result.txt) \$(cat result.txt) > result.txt}. Type the \textit{UP}-arrow-key and repeat the last command. Do this a couple of times and inspect the content of the result file. What happend?
+        \end{questions}
+    \end{task}
+
+    \begin{task}
+        Now that you know, that you can also store data in files, let's use this to generate a file, that stores a function for you.
+        We will now create a function, but instead of loading it into our memory as we did before, we will store it in a file.
+        Therefore we will use \texttt{echo} command to redirect a function we wrote into a file:
+        \begin{lstlisting}
+            echo "multiply(){
+                echo $(( $1 * $2 ))
+            }" > multiply.sh
+        \end{lstlisting}
+        Make sure, that you surround the function with double quotes! 
+        Everything within the double quotes will be interpreted as one argument for the \texttt{echo} command.
+        \begin{questions}
+            \item Inspect the content of the new file by running \texttt{cat multiply.sh}. Does it contain what you expected?
+            \item Try calling the function directly by running \texttt{multiply 2 3}. What is the output and did you expect that?
+            \item Now user the \texttt{source} command to load the function into your memory: \texttt{source multiply.sh}. Try calling the function again: \texttt{multiply 2 3}. What is the output and did you expect that?
+            \item Close your terminal-session and open a new one. Try calling the function again: \texttt{multiply 2 3}. What is the output and did you expect that?
+        \end{questions}
+    \end{task}
+
 
     \begin{advice}
-        Let someone from your peer-group try out your challenges!
-        Have them generate issues in the github repository and let them write down how long it took them to complete the challenge.
-        A good challenge is one, that takes less than 30 minutes to complete.
-        This way, scholars can plan their day.
-        Happy generating!
+        You can put as many functions into one file as you like. 
+        They will be stored in your file-system and you can use them whenever you want. 
+        Just make sure to use the \texttt{source} command to load them into the memory of your current terminal-session.
+        In one of the following challenges, you will learn how to source a file automatically whenever you open a new terminal-session.
     \end{advice}
 \end{challenge}
