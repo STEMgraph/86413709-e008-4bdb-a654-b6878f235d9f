@@ -45,7 +45,7 @@
         If you have used your computer and especially the terminal a lot, you might see more files there. 
         Let's start by writing some text to our filesystem by typing:
         \begin{lstlisting}
-            echo "My First Text" > new_file.txt 
+            echo 'My First Text' > new_file.txt 
         \end{lstlisting}
         Press \texttt{Enter} to confirm.
         Let's use \texttt{ls} again and see what we get.
@@ -75,11 +75,11 @@
         \texttt{cat} can also be called with two arguments. 
         Call \texttt{cat new_file.txt new_file2.txt} and inspect the output.
         You see your Output on the standard terminal output again, redirect the output to a new file, called \texttt{new_file3.txt} and inspect the content of the new file.
-        Now, call \texttt{echo "Hello World" > new_file3.txt} and inspect the content of the new file again.
+        Now, call \texttt{echo 'Hello World' > new_file3.txt} and inspect the content of the new file again.
         In a second attempt call \texttt{echo "A next line" >> new_file3.txt} and inspect the content of the new file again.
         And for the final trick, try the following command:
         \begin{lstlisting}
-            (cat file1.txt file2.txt file3.txt; echo "Another Line") > file4.txt
+            (cat file1.txt file2.txt file3.txt; echo 'Another Line') > file4.txt
         \end{lstlisting}
         \begin{questions}
             \item What does the command \texttt{cat} do if you pass one parameter?
@@ -113,12 +113,12 @@
         We will now create a function, but instead of loading it into our memory as we did before, we will store it in a file.
         Therefore we will use \texttt{echo} command to redirect a function we wrote into a file:
         \begin{lstlisting}
-            echo "function multiply(){
+            echo 'function multiply(){
                 echo $(( $1 * $2 ))
-            }" > multiply.sh
+            }' > multiply.sh
         \end{lstlisting}
-        Make sure, that you surround the function with double quotes! 
-        Everything within the double quotes will be interpreted as one argument for the \texttt{echo} command.
+        Make sure, that you surround the function with single quotes! 
+        Everything within the single quotes will be interpreted as one argument for the \texttt{echo} command.
         \begin{questions}
             \item Inspect the content of the new file by running \texttt{cat multiply.sh}. Does it contain what you expected?
             \item Try calling the function directly by running \texttt{multiply 2 3}. What is the output and did you expect that?
